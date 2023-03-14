@@ -1,0 +1,30 @@
+meta:
+  model_name: deit_base
+  master_port: 8888
+  load_checkpoint: false
+  training: true
+  finetuning: false
+  eval_type: bslplpl
+  device: cuda:0
+data:
+  root_path_train: /srv/share4/datasets/ImageNet/
+  image_folder_train: imagenet/
+  subset_file: subsets/imagenet_subsets1/1imgs_class.txt
+  root_path_test: /srv/share4/datasets/ImageNet/
+  image_folder_test: imagenet/
+  num_classes: 1000
+  val_split: null
+optimization:
+  weight_decay: 0.001
+  lr: 0.01
+  epochs: 100
+  batch_size: 16
+  num_blocks: 1
+  normalize: true
+  nesterov: false
+  dampening: 0.9
+logging:
+  folder: pretrained/msn/
+  tboard_folder: logs/tboard/
+  write_tag: msn_vitb16_inet_bslplpl_1imgs_class
+  pretrain_path: vitb16_600ep.pth.tar

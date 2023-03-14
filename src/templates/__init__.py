@@ -1,0 +1,3 @@
+from .openai_imagenet_template import openai_imagenet_template
+from .simple_template import simple_template
+from .iwildcam_template import iwildcam_template

@@ -1,0 +1,30 @@
+meta:
+  model_name: deit_small
+  master_port: 8888
+  load_checkpoint: false
+  training: true
+  finetuning: false
+  eval_type: lineval
+  device: cuda:0
+data:
+  root_path_train: /srv/share4/datasets/wilds/data/
+  image_folder_train: iwildcam_v2.0/
+  subset_file: null
+  root_path_test: /srv/share4/datasets/wilds/data/
+  image_folder_test: iwildcam_v2.0/
+  num_classes: 182
+  val_split: id_val
+optimization:
+  weight_decay: 0.001
+  lr: 0.001
+  epochs: 120
+  batch_size: 16
+  num_blocks: 1
+  normalize: false
+  nesterov: true
+  dampening: 0.0
+logging:
+  folder: pretrained/msn/
+  tboard_folder: logs/tboard/
+  write_tag: msn_vits16_iwc_lineval_full
+  pretrain_path: vits16_800ep.pth.tar

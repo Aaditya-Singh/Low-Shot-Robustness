@@ -1,0 +1,30 @@
+meta:
+  model_name: deit_base_with_pooling
+  master_port: 8888
+  load_checkpoint: false
+  training: true
+  finetuning: false
+  eval_type: bslplpl
+  device: cuda:0
+data:
+  root_path_train: /srv/share4/datasets/wilds/data/
+  image_folder_train: camelyon17_v1.0/
+  subset_file: subsets/camelyon17_subsets1/1500imgs_class.txt
+  root_path_test: /srv/share4/datasets/wilds/data/
+  image_folder_test: camelyon17_v1.0/
+  num_classes: 2
+  val_split: id_val
+optimization:
+  weight_decay: 0.001
+  lr: 0.01
+  epochs: 100
+  batch_size: 16
+  num_blocks: 1
+  normalize: true
+  nesterov: false
+  dampening: 0.9
+logging:
+  folder: pretrained/deit/
+  tboard_folder: logs/tboard/
+  write_tag: deit_vitb16_in21k_cmlyn_bslplpl_1500imgs_class
+  pretrain_path: deit_base_patch16_in21k_full.pth
