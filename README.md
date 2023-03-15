@@ -1,135 +1,70 @@
-# MSN  **M**asked **S**iamese **N**etworks
+# Benchmarking Low-Shot Robustness To Natural Distribution Shifts
 
-This repo provides a PyTorch implementation of MSN (**M**asked **S**iamese **N**etworks), as described in the paper [Masked Siamese Networks for Label-Efficient Learning](https://arxiv.org/abs/2204.07141).
+This repository contains the code for our under review paper: Benchmarking Low-Shot Robustness To Natural Distribution Shifts.
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/7530871/162791683-7b17121d-358f-4780-a810-8a8f59b29203.png" width="75%">
-</p>
-  
-MSN is a self-supervised learning framework that leverages the idea of mask-denoising while avoiding pixel and token-level reconstruction. Given two views of an image, MSN randomly masks patches from one view while leaving the other view unchanged. The objective is to train a neural network encoder, parametrized with a vision transformer (ViT), to output similar embeddings for the two views. In this procedure, MSN does not predict the masked patches at the input level, but rather performs the denoising step implicitly at the representation level by ensuring that the representation of the masked input matches the representation of the unmasked one.
+![Results](LSR.png)
 
-### Low-shot evaluation on ImageNet-1K
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/7530871/163032763-7a467588-c16c-42f2-ac2e-8623d35f4db3.png" width="75%">
-</p>
-<sub>
-Low-shot Evaluation of self-supervised models, pre-trained on ImageNet-1K. (Left) MSN surpasses the previous 800M parameter state-of-the-art. (Right) MSN achieves good classification performance using less labels than current mask-based auto-encoders.
-</sub>
+## Requirements:
+* Python 3.8 or newer (preferably through [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html)
+* Install [Cyanure](http://thoth.inrialpes.fr/people/mairal/cyanure/welcome.html#installation)
+* Install [WILDS benchmark](https://github.com/p-lambda/wilds) as a package in the home directory.
+* Install [other requirements](https://github.com/p-lambda/wilds#requirements) for the WILDS benchmark.
 
-### Visualizations
-We can use the RCDM framework of [Bordes et al., 2021](https://arxiv.org/abs/2112.09164) to qualitatively demonstrates the effectiveness of the MSN denoising process.
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/7530871/163029571-3ebc244c-e503-45f4-8a52-8d3f2ffed00d.png" width="60%">
-</p>
-<sub>
-  First column: original image. Second column: image with 90% of patches masked used to compute representations of an MSN pre-trained ViT-L/7 encoder. Other columns: RCDM sampling from generative model conditioned on MSN representation of masked image. Qualities that vary across samples represent information that is not contained in the pre-trained representation; e.g., in this case, MSN discards background, pose, and lighting information. Qualities that are common across samples represent information contained in the pre-trained representation. Even with high-masking ratio, MSN retains semantic information about the images.
-</sub>
+## Datasets
+* Please refer to [WiSE-FT](https://github.com/mlfoundations/wise-ft/blob/master/datasets.md) for downloading the datasets.
+* `root_path` and `image_folder` fields in the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs) should be set accordingly for training and evaluation.
 
-## Pre-trained models
 
+## Standard models (pre-trained on ImageNet)
 <table>
   <tr>
-    <td> ViT Small [16x16] </td>
-    <td><a href="https://dl.fbaipublicfiles.com/msn/vits16_800ep.pth.tar">download [800 epochs]</a></td>
+    <td> MSN checkpoints </td>
+    <td><a href="https://github.com/facebookresearch/msn#pre-trained-models">download</a></td>
   </tr>
   <tr>
-    <td> ViT Base [16x16] </td>
-    <td><a href="https://dl.fbaipublicfiles.com/msn/vitb16_600ep.pth.tar">download [600 epochs]</a></td>
+    <td> DINO checkpoints </td>
+    <td><a href="https://github.com/facebookresearch/dino#pretrained-models">download</a></td>
   </tr>
   <tr>
-    <td> ViT Large [16x16] </td>
-    <td><a href="https://dl.fbaipublicfiles.com/msn/vitl16_600ep.pth.tar">download [600 epochs]</a></td>
+    <td> DEIT checkpoints </td>
+    <td><a href="https://github.com/facebookresearch/deit/blob/main/README_deit.md">download</a></td>
   </tr>
   <tr>
-    <td> ViT Base [4x4] </td>
-    <td><a href="https://dl.fbaipublicfiles.com/msn/vitb4_300ep.pth.tar">download [300 epochs]</a></td>
-  </tr>
-  <tr>
-    <td> ViT Large [7x7] </td>
-    <td><a href="https://dl.fbaipublicfiles.com/msn/vitl7_200ep.pth.tar">download [200 epochs]</a></td>
+    <td> SwAV checkpoints </td>
+    <td><a href="https://github.com/facebookresearch/swav#model-zoo">download</a></td>
   </tr>
 </table>
 
-## Running MSN self-supervised pre-training
 
-### Config files
-All experiment parameters are specified in config files (as opposed to command-line-arguments). Config files make it easier to keep track of different experiments, as well as launch batches of jobs at a time. See the [configs/](configs/) directory for example config files.
+## Training and Testing
 
-### Requirements
-* Python 3.8 (or newer)
-* PyTorch install 1.11.0 (older versions may work too)
-* torchvision
-* Other dependencies: PyYaml, numpy, opencv, submitit, cyanure
+The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and/or fields for experimentation below:
 
-### Single-GPU training
-Our implementation starts from the [main.py](main.py), which parses the experiment config file and runs the msn pre-training locally on a multi-GPU (or single-GPU) machine. For example, to run on GPUs "0","1", and "2" on a local machine, use the command:
-```
-python main.py \
-  --fname configs/pretrain/msn_vits16.yaml \
-  --devices cuda:0 cuda:1 cuda:2
-```
+* `root_path_train/test`: Set the root path containing the image folders for training or testing, e.g. `.datasets/`
+* `image_folder_train/test`: Set the image folder containing the images for the different classes, e.g. `imagenet/`
+* `val_split`: Should be set to `id_val` for training and `val` for out-of-domain (OOD) testing for WILDS datasets.
+* `training`: Set to `true` for training and `false` for evaluation.
+* `finetuning`: Set to `true` for full fine-tuning and `false` for training only the classifier.
+* `eval_type`: Should be set to `bslplpl` for Baseline++, `lineval` for linear probing, and `zeroshot` for WiSE-FT with [CLIP](https://github.com/openai/CLIP).
+* `folder` and `pretrained_path`: Specifies folder to save model weights to and path to load model weights from.
 
-### Multi-GPU training
-In the multi-GPU setting, the implementation starts from [main_distributed.py](main_distributed.py), which, in addition to parsing the config file, also allows for specifying details about distributed training. For distributed training, we use the popular open-source [submitit](https://github.com/facebookincubator/submitit) tool and provide examples for a SLURM cluster. Feel free to edit [main_distributed.py](main_distributed.py) for your purposes to specify a different procedure for launching a multi-GPU job on a cluster.
+For more details and parameters than the ones provided here, please refer to the --help option.
 
-For example, to pre-train with MSN on 16 GPUs using the pre-training experiment configs specificed inside [configs/pretrain/msn_vits16.yaml](configs/pretrain/msn_vits16.yaml), run:
-```
-python main_distributed.py \
-  --fname configs/pretrain/msn_vits16.yaml \
-  --folder $path_to_save_submitit_logs \
-  --partition $slurm_partition \
-  --nodes 2 --tasks-per-node 8 \
-  --time 1000
-```
 
-## ImageNet-1K Logistic Regression Evaluation
+## Robustness Interventions
 
-##### Labeled Training Splits
-For reproducibilty, we have pre-specified the labeled training images as `.txt` files in the [imagenet_subsets/](imagenet_subsets/) directory.
-Based on your specifications in your experiment's config file, our implementation will automatically use the images specified in one of these `.txt` files as the set of labeled images.
+- Our code currently provides support for [LP-FT](https://arxiv.org/abs/2202.10054) and [WiSE-FT](https://github.com/mlfoundations/wise-ft).
+- For CLIP, the `clip` model should be [loaded](https://github.com/openai/CLIP#cliploadname-device-jitfalse) and the weights of `clip.visual` should be saved offline.
+- CLIP's zero-shot head weights can be saved with the command `bash commands/save_wiseft_weights.sh` 
+- The same command with `Type = wiseft` can be used to save WiSE-FT weights when the full fine-tuned model is saved.
+- Please refer to [Model Soups](https://github.com/mlfoundations/model-soups) and [RobustViT](https://github.com/hila-chefer/RobustViT) codebases for additional interventions.
 
-To run logistic regression on a pre-trained model using some labeled training split you can directly call the script from the command line:
-```
-python logistic_eval.py \
-  --subset-path imagenet_subsets1/5imgs_class.txt \
-  --root-path /datasets/ --image-folder imagenet_full_size/061417/ \
-  --device cuda:0 \
-  --pretrained $directory_containing_your_model \
-  --fname $model_filename \
-  --model-name deit_small \
-  --penalty l2 \
-  --lambd 0.0025
-```
 
-## ImageNet-1K Linear Evaluation
-To run linear evaluation on the entire ImageNet-1K dataset, use the `main_distributed.py` script and specify the `--linear-eval` flag.
+## References
 
-For example, to evaluate MSN on 32 GPUs using the linear evaluation config specificed inside [configs/eval/lineval_msn_vits16.yaml](configs/eval/lineval_msn_vits16.yaml), run:
-```
-python main_distributed.py \
-  --linear-eval \
-  --fname configs/eval/lineval_msn_vits16.yaml \
-  --folder $path_to_save_submitit_logs \
-  --partition $slurm_partition \
-  --nodes 4 --tasks-per-node 8 \
-  --time 1000
-```
+We thank the authors of the following repositories for open-sourcing their code.
 
-## ImageNet-1K Fine-Tuning Evaluation
-For fine-tuning evaluation, we use the [MAE codebase](https://github.com/facebookresearch/mae).
-
-## License
-See the [LICENSE](./LICENSE) file for details about the license under which this code is made available.
-
-## Citation
-If you find this repository useful in your research, please consider giving a star :star: and a citation
-```
-@article{assran2022masked,
-  title={Masked Siamese Networks for Label-Efficient Learning}, 
-  author={Assran, Mahmoud, and Caron, Mathilde, and Misra, Ishan, and Bojanowski, Piotr, and Bordes, Florian and Vincent, Pascal, and Joulin, Armand, and Rabbat, Michael, and Ballas, Nicolas},
-  journal={arXiv preprint arXiv:2204.07141},
-  year={2022}
-}
-```
+- [1]: [Masked Siamese Networks](https://github.com/facebookresearch/msn)
+- [2]: [Masked Autoencoders](https://github.com/facebookresearch/mae)
