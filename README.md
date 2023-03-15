@@ -14,7 +14,6 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 
 ## Datasets
 * Please refer to [WiSE-FT](https://github.com/mlfoundations/wise-ft/blob/master/datasets.md) and [WILDS benchmark](https://github.com/p-lambda/wilds#data) for downloading the datasets.
-* `root_path` and `image_folder` fields in the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs) should be set accordingly.
 * The low-shot subsets used in the paper can be found in the [subsets](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/subsets) folder.
 
 
