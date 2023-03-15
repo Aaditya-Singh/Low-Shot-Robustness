@@ -13,7 +13,7 @@ np.random.seed(n_subset)
 
 # Load the full dataset, and download it if necessary
 dset_name = "iwildcam"
-data_path = "/srv/datasets/wilds/data"
+data_path = "../datasets/wilds/data"
 full_dset = get_dataset(dataset=dset_name, root_dir=data_path, download=False)
 
 ################ Create training subset ################

@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 
 # Load the full dataset, and download it if necessary
 dset_name = "camelyon17"
-data_path = "/srv/share4/datasets/wilds/data"
+data_path = "../datasets/wilds/data"
 full_dset = get_dataset(dataset=dset_name, root_dir=data_path, download=False)
 
 # NOTE: Assumes class to count dict in train set is saved offline
