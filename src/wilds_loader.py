@@ -14,7 +14,7 @@ def init_data(
     num_workers=2,
     world_size=1,
     rank=0,
-    root_path="/srv/datasets/wilds/data",
+    root_path="../wilds/data",
     image_folder="iwildcam_v2.0",
     training=True,
     val_split="id_val",

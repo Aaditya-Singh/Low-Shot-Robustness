@@ -30,7 +30,7 @@ def init_data(
     num_workers=6,
     world_size=1,
     rank=0,
-    root_path="/srv/share4/datasets/",
+    root_path="../datasets/",
     image_folder="ImageNet/",
     training=True,
     val_split=None,
@@ -88,7 +88,7 @@ class ImageNet(torchvision.datasets.ImageFolder):
 
     def __init__(
         self,
-        root='/srv/datasets/',
+        root='../datasets/',
         image_folder='ImageNet/',
         transform=None,
         train=True

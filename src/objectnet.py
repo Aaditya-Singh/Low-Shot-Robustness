@@ -20,7 +20,7 @@ def init_data(
     num_workers=6,
     world_size=1,
     rank=0,
-    root_path="/srv/share/datasets/",
+    root_path="../datasets/",
     image_folder="objectnet-1.0/images",
     training=False,
     val_split=None,
