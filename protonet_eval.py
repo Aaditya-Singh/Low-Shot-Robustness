@@ -56,7 +56,7 @@ parser.add_argument(
     help='whether to standardize images before feeding to nework')
 parser.add_argument(
     '--root-path-train', type=str,
-    default='/srv/datasets/',
+    default='../datasets/',
     help='root directory to training data')
 parser.add_argument(
     '--image-folder-train', type=str,
@@ -64,7 +64,7 @@ parser.add_argument(
     help='image directory inside root_path_train')
 parser.add_argument(
     '--root-path-test', type=str,
-    default='/srv/datasets/',
+    default='../datasets/',
     help='root directory to test data')
 parser.add_argument(
     '--image-folder-test', type=str,
