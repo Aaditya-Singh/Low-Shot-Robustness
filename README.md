@@ -5,8 +5,8 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 ![Results](LSR.png)
 
 
-## Requirements:
-* Python 3.8 or newer (preferably through [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html)
+## Requirements
+* Python 3.8 or newer (preferably through [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html))
 * Install [Cyanure](http://thoth.inrialpes.fr/people/mairal/cyanure/welcome.html#installation)
 * Install [WILDS benchmark](https://github.com/p-lambda/wilds) as a package in the home directory.
 * Install [other requirements](https://github.com/p-lambda/wilds#requirements) for the WILDS benchmark.
@@ -14,7 +14,8 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 
 ## Datasets
 * Please refer to [WiSE-FT](https://github.com/mlfoundations/wise-ft/blob/master/datasets.md) for downloading the datasets.
-* `root_path` and `image_folder` fields in the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs) should be set accordingly for training and evaluation.
+* `root_path` and `image_folder` fields in the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs) should be set accordingly.
+* The low-shot subsets used in the paper for different datasets can be found in the [subsets](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/subsets) folder.
 
 
 ## Standard models (pre-trained on ImageNet)
@@ -47,7 +48,7 @@ The bash commands used for fine-tuning can be found in the [commands directory](
 * `val_split`: Should be set to `id_val` for training and `val` for out-of-domain (OOD) testing for WILDS datasets.
 * `training`: Set to `true` for training and `false` for evaluation.
 * `finetuning`: Set to `true` for full fine-tuning and `false` for training only the classifier.
-* `eval_type`: Should be set to `bslplpl` for Baseline++, `lineval` for linear probing, and `zeroshot` for WiSE-FT with [CLIP](https://github.com/openai/CLIP).
+* `eval_type`: Should be set to `bslplpl` for Baseline++. Default is `lineval`.
 * `folder` and `pretrained_path`: Specifies folder to save model weights to and path to load model weights from.
 
 For more details and parameters than the ones provided here, please refer to the --help option.
@@ -57,14 +58,15 @@ For more details and parameters than the ones provided here, please refer to the
 
 - Our code currently provides support for [LP-FT](https://arxiv.org/abs/2202.10054) and [WiSE-FT](https://github.com/mlfoundations/wise-ft).
 - For CLIP, the `clip` model should be [loaded](https://github.com/openai/CLIP#cliploadname-device-jitfalse) and the weights of `clip.visual` should be saved offline.
-- CLIP's zero-shot head weights can be saved with the command `bash commands/save_wiseft_weights.sh` 
-- The same command with `Type = wiseft` can be used to save WiSE-FT weights when the full fine-tuned model is saved.
-- Please refer to [Model Soups](https://github.com/mlfoundations/model-soups) and [RobustViT](https://github.com/hila-chefer/RobustViT) codebases for additional interventions.
+- CLIP's zero-shot weights can be saved with the command `bash commands/save_wiseft_weights.sh` 
+- Set `finetuning` to `true` and `eval_type` to `zeroshot` for full fine-tuning with these weights.
+- The same command with `Type=wiseft` can be used to save WiSE-FT weights after full fine-tuning.
+- Please refer to [Model Soups](https://github.com/mlfoundations/model-soups) and [RobustViT](https://github.com/hila-chefer/RobustViT) codebases for other interventions included in the paper.
 
 
 ## References
 
-We thank the authors of the following repositories for open-sourcing their code.
+We follow these repositories and thank the authors for open-sourcing their code.
 
 - [1]: [Masked Siamese Networks](https://github.com/facebookresearch/msn)
 - [2]: [Masked Autoencoders](https://github.com/facebookresearch/mae)
