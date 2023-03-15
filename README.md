@@ -43,7 +43,7 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 
 The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and/or fields for experimentation below:
 
-* `root_path_train/test`: Set the root path containing the image folders for training or testing, e.g. `.datasets/`
+* `root_path_train/test`: Set the root path containing the image folders for training or testing, e.g. `../datasets/`
 * `image_folder_train/test`: Set the image folder containing the images for the different classes, e.g. `imagenet/`
 * `val_split`: Should be set to `id_val` for training and `val` for out-of-domain (OOD) testing for WILDS datasets.
 * `training`: Set to `true` for training and `false` for evaluation.
