@@ -1,4 +1,3 @@
-# TODO: hardcoded model name in ft weights path
 Dataset=camelyon
 Nickname=cmlyn
 Subset=7500imgs_class

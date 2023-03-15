@@ -1,0 +1,30 @@
+meta:
+  model_name: resnet50
+  master_port: 8888
+  load_checkpoint: false
+  training: true
+  finetuning: true
+  eval_type: lineval
+  device: cuda:0
+data:
+  root_path_train: ../datasets/wilds/data/
+  image_folder_train: iwildcam_v2.0/
+  subset_file: null
+  root_path_test: ../datasets/wilds/data/
+  image_folder_test: iwildcam_v2.0/
+  num_classes: 182
+  val_split: id_val
+optimization:
+  weight_decay: 0.0
+  lr: 0.00001
+  epochs: 12
+  batch_size: 16
+  num_blocks: 1
+  normalize: false
+  nesterov: true
+  dampening: 0.0
+logging:
+  folder: pretrained/resnet/
+  tboard_folder: logs/tboard/
+  write_tag: sup_rn50_iwc_ft_full
+  pretrain_path: supervised_resnet50.pth

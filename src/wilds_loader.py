@@ -26,22 +26,15 @@ def init_data(
     dataset_name = image_folder.split('_')[0]
     full_dset = get_dataset(dataset=dataset_name, root_dir=root_path, download=False)
     transform = default_transforms(image_folder, training, eval_type, model_name) if \
-        transform is None else transform  
+        transform is None else transform
     if training:
         if subset_file:
             # -- Assumes that the training subset is saved offline
-            train_subset_file = subset_file[:-4] + "_train" + subset_file[-4:]
-            dataset = WILDSSubset(root_path, image_folder, train_subset_file, transform)
+            dataset = WILDSSubset(root_path, image_folder, subset_file, transform)
         else:
             dataset = full_dset.get_subset(split="train", frac=1, transform=transform)
     else:
-        if subset_file is not None and 'subsets2' in subset_file:
-            # NOTE -- Uses 200 images / class subset assuming it's saved offline
-            val_subset_file = subset_file.split('/')[:-1] + [f"200imgs_class_{val_split}.txt"]
-            val_subset_file = '/'.join(val_subset_file)
-            dataset = WILDSSubset(root_path, image_folder, val_subset_file, transform)
-        else:
-            dataset = full_dset.get_subset(split=val_split, transform=transform)
+        dataset = full_dset.get_subset(split=val_split, transform=transform)
     logger.info(f"WILDS {dataset_name} dataset created")
 
     dist_sampler = torch.utils.data.distributed.DistributedSampler(
