@@ -50,7 +50,7 @@ The bash commands used for fine-tuning can be found in the [commands directory](
 * `eval_type`: Should be set to `bslplpl` for Baseline++. Default is `lineval`.
 * `folder` and `pretrained_path`: Specifies folder to save model weights to and path to load model weights from.
 
-For more details and parameters than the ones provided here, please refer to the --help option.
+For more details and parameters than the ones provided here, please refer to the `--help` option.
 
 
 ## Robustness Interventions
