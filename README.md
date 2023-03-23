@@ -48,14 +48,14 @@ The bash commands used for fine-tuning can be found in the [commands directory](
 * `eval_type`: Should be set to `bslplpl` for Baseline++. Default is `lineval`.
 * `folder` and `pretrained_path`: Specifies folder to save model weights to and path to load model weights from.
 
-For more details and parameters than the ones provided here, please refer to the `--help` option. Details for full-finetuning on ImageNet can be found in our [MAE codebase](https://github.com/Aaditya-Singh/MAE)
+For more details and parameters than the ones provided here, please refer to the `--help` option. Details for full-finetuning on ImageNet can be found in our [MAE codebase](https://github.com/Aaditya-Singh/MAE).
 
 
 ## Robustness Interventions
 
-- This codebase provides support for [LP-FT](https://arxiv.org/abs/2202.10054) and [WiSE-FT](https://github.com/mlfoundations/wise-ft).
-- For CLIP, the `clip` model should be [loaded](https://github.com/openai/CLIP#cliploadname-device-jitfalse) and the weights of `clip.visual` should be saved offline.
-- CLIP's zero-shot head weights can be saved with the command provided [here](https://github.com/Aaditya-Singh/Low-Shot-Robustness/blob/main/commands/save_wiseft_weights.sh)
+- This codebase provides support for [LP-FT](https://arxiv.org/abs/2202.10054) and [WiSE-FT](https://github.com/mlfoundations/wise-ft) interventions.
+- For CLIP, the `clip` model should be [loaded](https://github.com/openai/CLIP#cliploadname-device-jitfalse) and `clip.visual` weights should be saved offline.
+- CLIP's zero-shot head weights can be saved with the command provided [here](https://github.com/Aaditya-Singh/Low-Shot-Robustness/blob/main/commands/save_wiseft_weights.sh).
 - Set `finetuning` to `true` and `eval_type` to `zeroshot` for full fine-tuning with these weights.
 - This command with `Type=wiseft` can be used to save WiSE-FT weights after full fine-tuning.
 - Please refer to our [RobustViT codebase](https://github.com/Aaditya-Singh/RobustViT) 
