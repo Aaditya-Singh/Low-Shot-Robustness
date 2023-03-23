@@ -6,10 +6,8 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 
 
 ## Requirements
-* Python 3.8 or newer (preferably through [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html)).
-* Install [Cyanure](http://thoth.inrialpes.fr/people/mairal/cyanure/welcome.html#installation).
-* Install [WILDS benchmark](https://github.com/p-lambda/wilds) as a package in the home directory.
-* Install [other requirements](https://github.com/p-lambda/wilds#requirements) for the WILDS benchmark.
+* Python 3.8 or newer (preferably through [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html)) and [Cyanure](http://thoth.inrialpes.fr/people/mairal/cyanure/welcome.html#installation).
+* Install [WILDS benchmark](https://github.com/p-lambda/wilds) as a package and [other requirements](https://github.com/p-lambda/wilds#requirements).
 
 
 ## Datasets
