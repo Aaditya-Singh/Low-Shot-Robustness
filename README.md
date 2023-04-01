@@ -36,7 +36,7 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 </table>
 
 
-## [CLIP](https://github.com/openai/CLIP) models with zero-shot head weights
+## [CLIP](https://github.com/openai/CLIP) ViTB-16 with zero-shot head weights
 <table>
   <tr>
     <td> ImageNet </td>
