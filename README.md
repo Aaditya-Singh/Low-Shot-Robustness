@@ -36,6 +36,23 @@ This repository contains the code for our under review paper: Benchmarking Low-S
 </table>
 
 
+## [CLIP](https://github.com/openai/CLIP) models with zero-shot head weights
+<table>
+  <tr>
+    <td> ImageNet </td>
+    <td><a href="https://www.dropbox.com/s/93u1tfow7ezmivg/ViTB16_zeroshotinet.pth.tar?dl=0">download</a></td>
+  </tr>
+  <tr>
+    <td> iWildCam </td>
+    <td><a href="https://www.dropbox.com/s/m52vsdw7e26xfzj/ViTB16_zeroshotiwc.pth.tar?dl=0">download</a></td>
+  </tr>
+  <tr>
+    <td> Camelyon </td>
+    <td><a href="https://www.dropbox.com/s/34xxd2x8vvlhdzp/ViTB16_zeroshotcmlyn.pth.tar?dl=0">download</a></td>
+  </tr>
+</table>
+
+
 ## Training and Testing
 
 The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and/or fields for experimentation below:
