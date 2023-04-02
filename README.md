@@ -75,8 +75,8 @@ For more details and parameters than the ones provided here, please refer to the
 - CLIP's zero-shot head weights can be saved with the command provided [here](https://github.com/Aaditya-Singh/Low-Shot-Robustness/blob/main/commands/save_wiseft_weights.sh).
 - Set `finetuning` to `true` and `eval_type` to `zeroshot` for full fine-tuning with these weights.
 - This command with `Type=wiseft` can be used to save WiSE-FT weights after full fine-tuning.
-- Please refer to our [RobustViT codebase](https://github.com/Aaditya-Singh/RobustViT) 
- and [Model Soups](https://github.com/mlfoundations/model-soups) for other interventions.
+- Please refer to our [RobustViT](https://github.com/Aaditya-Singh/RobustViT) 
+ and [Model Soups](https://github.com/ksarangmath/model-soups) codebases for other interventions.
 
 
 ## References
