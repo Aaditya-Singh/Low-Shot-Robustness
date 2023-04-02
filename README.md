@@ -58,7 +58,7 @@ git clone --recurse-submodules https://github.com/Aaditya-Singh/Low-Shot-Robustn
 
 ## Training and Testing
 
-The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and/or fields for experimentation below:
+The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and keys for experimentation below:
 
 * `root_path_train/test`: Set the root path containing the image folders for training or testing, e.g. `../datasets/`
 * `image_folder_train/test`: Set the image folder containing the images for the different classes, e.g. `imagenet/`
@@ -68,18 +68,20 @@ The bash commands used for fine-tuning can be found in the [commands directory](
 * `eval_type`: Should be set to `bslplpl` for Baseline++. Default is `lineval`.
 * `folder` and `pretrained_path`: Specifies folder to save model weights to and path to load model weights from.
 
-For more details and parameters than the ones provided here, please refer to the `--help` option. Details for full-finetuning on ImageNet can be found in our [MAE codebase](https://github.com/Aaditya-Singh/MAE).
+For more details and parameters than the ones provided here, please refer to the `--help` option. Details for full-finetuning on ImageNet can be found in our [MAE](https://github.com/Aaditya-Singh/MAE) codebase.
 
 
 ## Robustness Interventions
 
-- This codebase provides support for [LP-FT](https://arxiv.org/abs/2202.10054) and [WiSE-FT](https://github.com/mlfoundations/wise-ft) interventions.
+This codebase supports [LP-FT](https://arxiv.org/abs/2202.10054) and [WiSE-FT](https://github.com/mlfoundations/wise-ft) interventions. Note that the [same](https://github.com/Aaditya-Singh/Low-Shot-Robustness/#training-and-testing) general instructions are applicable for these interventions. We summarize some other important details below.
+
 - For CLIP, the `clip` model should be [loaded](https://github.com/openai/CLIP#cliploadname-device-jitfalse) and `clip.visual` weights should be saved offline.
 - CLIP's zero-shot head weights can be saved with the command provided [here](https://github.com/Aaditya-Singh/Low-Shot-Robustness/blob/main/commands/save_wiseft_weights.sh).
-- Set `finetuning` to `true` and `eval_type` to `zeroshot` for full fine-tuning with these weights.
-- This command with `Type=wiseft` can be used to save WiSE-FT weights after full fine-tuning.
-- Please refer to our [RobustViT](https://github.com/Aaditya-Singh/RobustViT) 
- and [Model Soups](https://github.com/ksarangmath/model-soups) codebases for other interventions.
+- Alternatively, the full set of weights (encoder and zero-shot head) for ViTB-16 can be found [here](https://github.com/Aaditya-Singh/Low-Shot-Robustness#clip-vitb-16-with-zero-shot-head-weights).
+- Set `finetuning` to `true` and `eval_type` to `zeroshot` in the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs) for full fine-tuning with these weights.
+- The [same](https://github.com/Aaditya-Singh/Low-Shot-Robustness/blob/main/commands/save_wiseft_weights.sh) command with `Type=wiseft` can be used to save WiSE-FT weights after full fine-tuning.
+
+Please refer to our [RobustViT](https://github.com/Aaditya-Singh/RobustViT) and [Model Soups](https://github.com/ksarangmath/model-soups) codebases for additional interventions. We also provide them as submodules in this repository. The command for cloning the full repository is also provided [here](https://github.com/Aaditya-Singh/Low-Shot-Robustness/#benchmarking-low-shot-robustness-to-natural-distribution-shifts).
 
 
 ## References
