@@ -1,6 +1,9 @@
 # Benchmarking Low-Shot Robustness To Natural Distribution Shifts
 
-This repository contains the code for our under review paper: Benchmarking Low-Shot Robustness To Natural Distribution Shifts.
+This repository contains the code for our under review paper: Benchmarking Low-Shot Robustness To Natural Distribution Shifts. To clone the full repository along with the submodules, the following command can be used.
+```
+git clone --recurse-submodules https://github.com/Aaditya-Singh/Low-Shot-Robustness.git
+```
 
 ![Results](LSR.png)
 
