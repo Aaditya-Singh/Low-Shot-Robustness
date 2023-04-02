@@ -58,7 +58,7 @@ git clone --recurse-submodules https://github.com/Aaditya-Singh/Low-Shot-Robustn
 
 ## Training and Testing
 
-The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and keys for experimentation below:
+The bash commands used for fine-tuning can be found in the [commands directory](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/commands). Methods other than Logistic Regression and Mean Centroid Classifier additionally make use of the [config yamls](https://github.com/Aaditya-Singh/Low-Shot-Robustness/tree/main/configs). We summarize some of the important flags and keys for experimentation below.
 
 * `root_path_train/test`: Set the root path containing the image folders for training or testing, e.g. `../datasets/`
 * `image_folder_train/test`: Set the image folder containing the images for the different classes, e.g. `imagenet/`
