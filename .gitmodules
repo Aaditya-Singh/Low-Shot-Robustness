@@ -4,6 +4,6 @@
 [submodule "RobustViT"]
 	path = RobustViT
 	url = https://github.com/Aaditya-Singh/RobustViT.git
-[submodule "model-soups"]
-	path = model-soups
+[submodule "ModelSoups"]
+	path = ModelSoups
 	url = https://github.com/ksarangmath/model-soups.git
