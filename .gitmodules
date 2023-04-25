@@ -1,0 +1,9 @@
+[submodule "MAE"]
+	path = MAE
+	url = https://github.com/Aaditya-Singh/mae.git
+[submodule "RobustViT"]
+	path = RobustViT
+	url = https://github.com/Aaditya-Singh/RobustViT.git
+[submodule "ModelSoups"]
+	path = ModelSoups
+	url = https://github.com/ksarangmath/model-soups.git
