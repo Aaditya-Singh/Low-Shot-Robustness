@@ -89,13 +89,13 @@ Please refer to our [RobustViT](https://github.com/Aaditya-Singh/RobustViT) and 
 
 Please consider citing our paper if you find this repository helpful:
 ```
-@misc{singh2023benchmarking,
-      title={Benchmarking Low-Shot Robustness to Natural Distribution Shifts}, 
-      author={Aaditya Singh and Kartik Sarangmath and Prithvijit Chattopadhyay and Judy Hoffman},
-      year={2023},
-      eprint={2304.11263},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@InProceedings{Singh_2023_ICCV,
+    author    = {Singh, Aaditya and Sarangmath, Kartik and Chattopadhyay, Prithvijit and Hoffman, Judy},
+    title     = {Benchmarking Low-Shot Robustness to Natural Distribution Shifts},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {16232-16242}
 }
 ```
 
